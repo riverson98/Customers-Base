@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -12,15 +13,16 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class ServiceEntity {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private final long id;
+    private long id;
     @Column
-    private final String description;
+    private String description;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private PersonEntity personEntity;
     @Column(nullable = false)
-    private final BigDecimal price;
+    private BigDecimal price;
 
 }
