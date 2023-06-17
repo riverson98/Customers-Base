@@ -1,13 +1,12 @@
 package io.github.riverson98.customerBase.service;
 
-import io.github.riverson98.customerBase.entity.PersonEntity;
+import io.github.riverson98.customerBase.entity.ClientEntity;
 import io.github.riverson98.customerBase.repository.PersonRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -17,18 +16,18 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public PersonEntity createPerson(PersonEntity personEntity) {
-        if (personEntity != null) {
-            return personRepository.save(personEntity);
+    public ClientEntity createPerson(ClientEntity clientEntity) {
+        if (clientEntity != null) {
+            return personRepository.save(clientEntity);
         }
         return null;
     }
 
-    public List<PersonEntity> findAllPersons(){
+    public List<ClientEntity> findAllPersons(){
         return personRepository.findAll();
     }
 
-    public PersonEntity findById(Long id) {
+    public ClientEntity findById(Long id) {
         return this.personRepository.findById(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -44,13 +43,13 @@ public class PersonService {
 
     }
 
-    public void update(Long id, PersonEntity personEntity){
+    public void update(Long id, ClientEntity clientEntity){
         this.personRepository
                 .findById(id)
                 .map(person -> {
-                    person.setName(personEntity.getName());
-                    person.setCpf(personEntity.getCpf());
-                    return personRepository.save(personEntity);
+                    person.setName(clientEntity.getName());
+                    person.setCpf(clientEntity.getCpf());
+                    return personRepository.save(clientEntity);
                 })
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND));

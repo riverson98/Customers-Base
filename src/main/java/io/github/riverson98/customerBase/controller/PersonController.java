@@ -1,10 +1,9 @@
 package io.github.riverson98.customerBase.controller;
 
-import io.github.riverson98.customerBase.entity.PersonEntity;
+import io.github.riverson98.customerBase.entity.ClientEntity;
 import io.github.riverson98.customerBase.service.PersonService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +15,7 @@ import java.util.List;
 @RequestMapping("/api/person")
 @Slf4j
 @Validated
+@CrossOrigin("http://localhost:4200")
 public class PersonController {
     PersonService personService;
 
@@ -24,18 +24,18 @@ public class PersonController {
     }
 
     @PostMapping
-    public ResponseEntity<PersonEntity> create(@Valid @RequestBody PersonEntity personEntity) {
-        log.info("start create person: {}", personEntity.toString());
-        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(personEntity));
+    public ResponseEntity<ClientEntity> create(@Valid @RequestBody ClientEntity clientEntity) {
+        log.info("start create person: {}", clientEntity.toString());
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(clientEntity));
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonEntity>>findAll(){
+    public ResponseEntity<List<ClientEntity>>findAll(){
         return ResponseEntity.ok(personService.findAllPersons());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<PersonEntity> findById(@PathVariable long id) {
+    public ResponseEntity<ClientEntity> findById(@PathVariable long id) {
         log.info("search person with id: {}", id);
         return ResponseEntity.ok(personService.findById(id));
     }
@@ -48,9 +48,9 @@ public class PersonController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updatePerson(@PathVariable long id, @Valid @RequestBody PersonEntity personEntity) {
-        log.info("update person with id: {} and requestBody: {}", id, personEntity);
-        personService.update(id, personEntity);
+    public ResponseEntity<Void> updatePerson(@PathVariable long id, @Valid @RequestBody ClientEntity clientEntity) {
+        log.info("update person with id: {} and requestBody: {}", id, clientEntity);
+        personService.update(id, clientEntity);
         return ResponseEntity.noContent().build();
     }
 }

@@ -21,7 +21,7 @@ public class ServiceEntity {
     private String description;
     @ManyToOne
     @JoinColumn(name = "person_id")
-    private PersonEntity personEntity;
+    private ClientEntity clientEntity;
     @Column(nullable = false)
     private BigDecimal price;
 

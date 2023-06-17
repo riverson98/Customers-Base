@@ -31,8 +31,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(value = ResponseStatusException.class)
     public ResponseEntity<ErrorCustomResponse> responseStatusExceptionHandler(ResponseStatusException statusException, WebRequest webRequest){
-        log.error("Error : {} - requestBody : {} ", statusException.getMessage(),
-                new String(((ContentCachingRequestWrapper) ((ServletWebRequest) webRequest).getRequest()).getContentAsByteArray()));
+        log.error("Error : {} ", statusException.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(
                     new ErrorCustomResponse("Invalid request", statusException.getMessage())
