@@ -27,13 +27,13 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public ClientEntity findById(Long id) {
+    public ClientEntity findById(Integer id) {
         return this.personRepository.findById(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public void deletePerson(Long id) {
+    public void deletePerson(Integer id) {
         this.personRepository.findById(id)
                 .map(person -> {
                     personRepository.delete(person);
@@ -43,7 +43,7 @@ public class PersonService {
 
     }
 
-    public void update(Long id, ClientEntity clientEntity){
+    public void update(Integer id, ClientEntity clientEntity){
         this.personRepository
                 .findById(id)
                 .map(person -> {

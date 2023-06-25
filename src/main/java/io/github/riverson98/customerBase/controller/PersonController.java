@@ -35,20 +35,20 @@ public class PersonController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ClientEntity> findById(@PathVariable long id) {
+    public ResponseEntity<ClientEntity> findById(@PathVariable Integer id) {
         log.info("search person with id: {}", id);
         return ResponseEntity.ok(personService.findById(id));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         log.info("delete person with id: {}", id);
         personService.deletePerson(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updatePerson(@PathVariable long id, @Valid @RequestBody ClientEntity clientEntity) {
+    public ResponseEntity<Void> updatePerson(@PathVariable Integer id, @Valid @RequestBody ClientEntity clientEntity) {
         log.info("update person with id: {} and requestBody: {}", id, clientEntity);
         personService.update(id, clientEntity);
         return ResponseEntity.noContent().build();
