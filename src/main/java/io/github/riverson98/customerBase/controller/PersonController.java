@@ -24,7 +24,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public ResponseEntity<ClientEntity> create(@Valid @RequestBody ClientEntity clientEntity) {
+    public ResponseEntity<ClientEntity> createClient(@Valid @RequestBody ClientEntity clientEntity) {
         log.info("start create person: {}", clientEntity.toString());
         return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(clientEntity));
     }
